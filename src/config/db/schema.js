@@ -117,6 +117,10 @@ export const carts = pgTable(
     userId: integer('user_id'),
     productId: integer('product_id'),
     qty: integer().default(1),
+    negotiatedPrice: numeric('negotiated_price'),
+    negotiationStatus: varchar('negotiation_status', { length: 20 })
+      .default('none'),
+    negotiationNote: text('negotiation_note'),
     createdAt: timestamp('created_at', { mode: 'string' }).defaultNow(),
   },
   (table) => [

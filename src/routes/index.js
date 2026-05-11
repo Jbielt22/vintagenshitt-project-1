@@ -8,6 +8,7 @@ import orderRoutes from './order.routes.js';
 import orderItemRoutes from './orderItem.routes.js';
 import paymentRoutes from './payment.routes.js';
 import shippingRoutes from './shipping.routes.js';
+import negotiationRoutes from './negotiation.routes.js';
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.use('/orders', orderRoutes);
 router.use('/order-items', orderItemRoutes);
 router.use('/payments', paymentRoutes);
 router.use('/shippings', shippingRoutes);
+router.use('/negotiations', negotiationRoutes);
 
 export default router;
