@@ -1,0 +1,14 @@
+node_modules
+.git
+.gitignore
+*.md
+.next
+frontend
+docker-compose.yml
+Dockerfile
+backend/.dockerignore
+backend/.env.example
+backend/jest.config.js
+backend/POSTMAN_*
+backend/tests
+backend/drizzle
