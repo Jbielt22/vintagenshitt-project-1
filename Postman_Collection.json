@@ -1,0 +1,976 @@
+{
+  "info": {
+    "name": "Vintage Nenshitt API",
+    "description": "Complete API documentation for Vintage Nenshitt e-commerce platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "description": "Authentication endpoints",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"username\": \"username\",\n  \"fullName\": \"Full Name\",\n  \"phone\": \"081234567890\",\n  \"address\": \"Jl. Example No. 123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Register a new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login user and get JWT token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "description": "Product management endpoints",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            },
+            "description": "Get all products (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/:id",
+              "host": ["{{base_url}}"],
+              "path": ["products", ":id"]
+            },
+            "description": "Get a specific product by ID (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Product Name\",\n  \"description\": \"Product description\",\n  \"price\": 100000,\n  \"stock\": 50,\n  \"categoryId\": 1,\n  \"image\": \"https://example.com/image.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            },
+            "description": "Create a new product (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Product Name\",\n  \"description\": \"Updated description\",\n  \"price\": 120000,\n  \"stock\": 45,\n  \"categoryId\": 1,\n  \"image\": \"https://example.com/image-updated.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/:id",
+              "host": ["{{base_url}}"],
+              "path": ["products", ":id"]
+            },
+            "description": "Update a product (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/products/:id",
+              "host": ["{{base_url}}"],
+              "path": ["products", ":id"]
+            },
+            "description": "Delete a product (Admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "description": "Product category management endpoints",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["categories"]
+            },
+            "description": "Get all product categories (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["categories", ":id"]
+            },
+            "description": "Get a specific category by ID (public endpoint)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Category Name\",\n  \"description\": \"Category description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["categories"]
+            },
+            "description": "Create a new category (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Category Name\",\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["categories", ":id"]
+            },
+            "description": "Update a category (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["categories", ":id"]
+            },
+            "description": "Delete a category (Admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "description": "User management endpoints",
+      "item": [
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/profile",
+              "host": ["{{base_url}}"],
+              "path": ["users", "profile"]
+            },
+            "description": "Get current user profile (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newusername\",\n  \"fullName\": \"New Full Name\",\n  \"phone\": \"081987654321\",\n  \"address\": \"Jl. New Address No. 456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/profile",
+              "host": ["{{base_url}}"],
+              "path": ["users", "profile"]
+            },
+            "description": "Update current user profile (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            },
+            "description": "Get all users (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":id"]
+            },
+            "description": "Get a specific user by ID (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newemail@example.com\",\n  \"username\": \"newusername\",\n  \"fullName\": \"New Full Name\",\n  \"phone\": \"081987654321\",\n  \"address\": \"Jl. New Address No. 456\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":id"]
+            },
+            "description": "Update a user (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":id"]
+            },
+            "description": "Delete a user (Admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "description": "Shopping cart endpoints",
+      "item": [
+        {
+          "name": "Get Cart",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/carts",
+              "host": ["{{base_url}}"],
+              "path": ["carts"]
+            },
+            "description": "Get current user's shopping cart (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add To Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/carts",
+              "host": ["{{base_url}}"],
+              "path": ["carts"]
+            },
+            "description": "Add product to cart (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Cart Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/carts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["carts", ":id"]
+            },
+            "description": "Update quantity of a cart item (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Cart Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/carts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["carts", ":id"]
+            },
+            "description": "Remove a specific item from cart (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/carts",
+              "host": ["{{base_url}}"],
+              "path": ["carts"]
+            },
+            "description": "Clear all items from cart (Authenticated users only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "description": "Order management endpoints",
+      "item": [
+        {
+          "name": "Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddress\": \"Jl. Pengiriman No. 123\",\n  \"shippingCity\": \"Jakarta\",\n  \"shippingProvince\": \"DKI Jakarta\",\n  \"shippingZipCode\": \"12345\",\n  \"shippingPhone\": \"081234567890\",\n  \"paymentMethod\": \"midtrans\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/checkout",
+              "host": ["{{base_url}}"],
+              "path": ["orders", "checkout"]
+            },
+            "description": "Checkout order (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": ["{{base_url}}"],
+              "path": ["orders"]
+            },
+            "description": "Get all orders for authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/:id",
+              "host": ["{{base_url}}"],
+              "path": ["orders", ":id"]
+            },
+            "description": "Get a specific order by ID (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/:id/status",
+              "host": ["{{base_url}}"],
+              "path": ["orders", ":id", "status"]
+            },
+            "description": "Update order status (Admin only). Valid statuses: pending, confirmed, shipped, delivered, cancelled"
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/:id/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["orders", ":id", "cancel"]
+            },
+            "description": "Cancel an order (Authenticated users only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order Items",
+      "description": "Order items management endpoints",
+      "item": [
+        {
+          "name": "Get Order Items By Order ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/order-items/order/:orderId",
+              "host": ["{{base_url}}"],
+              "path": ["order-items", "order", ":orderId"]
+            },
+            "description": "Get all items in a specific order (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order Item By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/order-items/:id",
+              "host": ["{{base_url}}"],
+              "path": ["order-items", ":id"]
+            },
+            "description": "Get a specific order item by ID (Authenticated users only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "description": "Payment processing endpoints",
+      "item": [
+        {
+          "name": "Get Payment By Order ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments/order/:orderId",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "order", ":orderId"]
+            },
+            "description": "Get payment information for a specific order (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments",
+              "host": ["{{base_url}}"],
+              "path": ["payments"]
+            },
+            "description": "Get all payments (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["payments", ":id"]
+            },
+            "description": "Get a specific payment by ID (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Capture PayPal Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/paypal/capture/:paypalOrderId",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "paypal", "capture", ":paypalOrderId"]
+            },
+            "description": "Capture a PayPal payment (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Midtrans Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction_id\": \"1234567890\",\n  \"order_id\": \"ORDER-123\",\n  \"gross_amount\": \"100000\",\n  \"payment_type\": \"credit_card\",\n  \"transaction_time\": \"2024-01-01 12:00:00\",\n  \"transaction_status\": \"capture\",\n  \"fraud_status\": \"accept\",\n  \"signature_key\": \"signature_key_from_midtrans\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/midtrans/notification",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "midtrans", "notification"]
+            },
+            "description": "Midtrans notification webhook (Public - signature verified inside)"
+          },
+          "response": []
+        },
+        {
+          "name": "PayPal Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"WH-PAYPAL-WEBHOOK-ID\",\n  \"event_type\": \"PAYMENT.CAPTURE.COMPLETED\",\n  \"resource\": {\n    \"id\": \"PAYPAL-TRANSACTION-ID\",\n    \"status\": \"COMPLETED\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/paypal/webhook",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "paypal", "webhook"]
+            },
+            "description": "PayPal webhook endpoint (Public - signature verified inside)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Shipping",
+      "description": "Shipping management endpoints",
+      "item": [
+        {
+          "name": "Get All Shippings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/shippings",
+              "host": ["{{base_url}}"],
+              "path": ["shippings"]
+            },
+            "description": "Get all shippings (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Shipping By Order ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/shippings/order/:orderId",
+              "host": ["{{base_url}}"],
+              "path": ["shippings", "order", ":orderId"]
+            },
+            "description": "Get shipping information for a specific order (Authenticated users only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Shipping",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": 1,\n  \"shippingProvider\": \"jne\",\n  \"trackingNumber\": \"JNE123456789\",\n  \"estimatedDelivery\": \"2024-01-10\",\n  \"shippingAddress\": \"Jl. Pengiriman No. 123\",\n  \"shippingCity\": \"Jakarta\",\n  \"shippingProvince\": \"DKI Jakarta\",\n  \"shippingZipCode\": \"12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/shippings",
+              "host": ["{{base_url}}"],
+              "path": ["shippings"]
+            },
+            "description": "Create a new shipping record (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Shipping",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trackingNumber\": \"JNE987654321\",\n  \"estimatedDelivery\": \"2024-01-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/shippings/:id",
+              "host": ["{{base_url}}"],
+              "path": ["shippings", ":id"]
+            },
+            "description": "Update shipping information (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Delivery Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveryStatus\": \"in_transit\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/shippings/:id/status",
+              "host": ["{{base_url}}"],
+              "path": ["shippings", ":id", "status"]
+            },
+            "description": "Update delivery status (Admin only). Valid statuses: pending, in_transit, delivered, failed"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/../health",
+          "host": ["{{base_url}}"],
+          "path": ["..", "health"]
+        },
+        "description": "Check API server health status"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001/api",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
