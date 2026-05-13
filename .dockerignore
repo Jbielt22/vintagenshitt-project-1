@@ -3,12 +3,10 @@ node_modules
 .gitignore
 *.md
 .next
-frontend
-docker-compose.yml
-Dockerfile
-backend/.dockerignore
-backend/.env.example
-backend/jest.config.js
-backend/POSTMAN_*
+frontend/node_modules
+backend/node_modules
 backend/tests
 backend/drizzle
+backend/.env.example
+backend/POSTMAN_*
+backend/jest.config.js
