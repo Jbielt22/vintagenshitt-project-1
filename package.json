@@ -1,5 +1,29 @@
 {
-  "dependencies": {
-    "framer-motion": "^12.38.0"
-  }
+  "name": "vintagenshitt-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vintagenshitt - Vintage e-commerce platform",
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "backend": "npm run dev -w backend",
+    "frontend": "npm run dev -w frontend",
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm run backend\" \"npm run frontend\"",
+    "build": "npm run build -w frontend",
+    "seed": "npm run seed -w backend",
+    "test": "npm run test -w backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaijengg/vintagenshitt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaijengg/vintagenshitt/issues"
+  },
+  "homepage": "https://github.com/Kaijengg/vintagenshitt#readme"
 }
