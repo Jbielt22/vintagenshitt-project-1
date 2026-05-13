@@ -1,0 +1,15 @@
+# Deny access to all files by default
+Order Deny,Allow
+Deny from all
+
+# Allow image files
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Block PHP execution in this folder
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
